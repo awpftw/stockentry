@@ -73,7 +73,21 @@
   </div>
 </form>
 
+<div class="container" id="demo"></div>
+<script>
+	var xmlhttp = new XMLHttpRequest();
+	xmlhttp.onreadystatechange = function(){
+		if (this.readyState == 4 && this.status == 200){
+			var myObj = JSON.parse(this.responseText);
+			document.getElementById("demo").innerHTML = myObj.A;
+			document.getElementById("demo").innerHTML += myObj.B;
+			document.getElementById("demo").innerHTML += myObj.C;
+		}
+	};
 
+	xmlhttp.open("GET","prices.txt", true);
+	xmlhttp.send();
+</script>
 
 </div>
 <script src="auto-complete.js"></script>
@@ -83,7 +97,7 @@ var demo1 = new autoComplete({
             minChars: 1,
             source: function(term, suggest){
                 term = term.toLowerCase();
-                var choices = ['Acer campestre 1+0 40/60','Acer campestre 1+0 60/90','Prunus spinosa 1+0 60/90 * 1/RP'];
+                var choices = [{"Acer campestre 1+0 40/60":"£0.20"},{"Crataegus monogyna 1+0 60/90":"£0.25"}];
                 var suggestions = [];
                 for (i=0;i<choices.length;i++)
                     if (~choices[i].toLowerCase().indexOf(term)) suggestions.push(choices[i]);
@@ -102,7 +116,7 @@ var demo1 = new autoComplete({
     	c2.innerHTML=document.getElementById('hero-demo').value;
     	c3.innerHTML="£1.24";
 
-    	// native JavaScript encoding:
+    	// native JavaScript encoding
 		//' becomes \x27
 		//" becomes \x22
     	c4.innerHTML="<span class=\x22btn badge badge-primary badge-btn\x22 onclick=\x22Delete(this);\x22>delete</span>";
