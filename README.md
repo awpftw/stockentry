@@ -1,1 +1,1 @@
-Web based stock entry, using js and Bootstrap V4
+Web based stock entry, using js, auto-complete and Bootstrap V4.
