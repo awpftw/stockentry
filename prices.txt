@@ -1,3 +1,4 @@
+<document>
 {
 "Abies nordmanniana 2+2 15/20":0.750,
 "Acer campestre 1+1 60/90":0.420,
@@ -123,3 +124,4 @@
 "Viburnum opulus 1+1 60/90":0.580,
 "Weigela 'Bristol Ruby' 30/50 2br+":0.550
 }
+</document>
