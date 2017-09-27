@@ -4,9 +4,9 @@
 	<meta charset="utf-8">
 	<title>Stock Entry</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
-	<link rel="stylesheet" href="auto-complete.css">
+	<link rel="stylesheet" href="easy-autocomplete.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	<script src="auto-complete.js"></script>
+	<script src="jquery.easy-autocomplete.js"></script>
 </head>
 
 <body>
@@ -50,38 +50,49 @@
     </tbody>
   </table>
 
-  <form name="input">
-  <div class="form-row">
-    <div class="col">
-      <input type="number" id="qty" class="form-control" placeholder="Quantity">
+<form name="input">
+<div class="container">
+  <div class="row">
+    <div class="col-2">
+			<input type="number" id="qty" class="form-control" placeholder="Quantity">
     </div>
-    <div class="col">
-    	<input id="hero-demo" class="form-control" autofocus type="text" name="q" placeholder="Description">
+    <div class="col-6">
+      <input id="desc" class="form-control" placeholder="Description">
     </div>
-    <button type="button" class="btn btn-primary" onclick="Add();">Add</button>
+    <div class="col-2">
+      <input id="price" class="form-control">
+    </div>
+		<div class="col-2">
+      <button type="button" class="btn btn-primary" onclick="Add();">Add</button>
+    </div>
   </div>
+</div>
 </form>
 
-<div id="search_bar"></div>
+<script>
+	
+var options = {
+
+  url: "prices.json",
+
+  getValue: "name",
+
+  list: {	
+    match: {
+      enabled: true
+    }
+  },
+
+  theme: "square"
+};
+
+$("#desc").easyAutocomplete(options);
+
+</script>
 </div>
 
 <script>
-var url = 'prices1.php?q={input}';
-var widget = new AutoComplete('search_bar', url)
-/*
-var demo1 = new autoComplete({
-            selector: '#hero-demo',
-            minChars: 1,
-            source: function(term, suggest){
-                term = term.toLowerCase();
-                //var choices = ["Acer campestre 1+0 40/60","Crataegus monogyna 1+0 60/90"];
-                var suggestions = [];
-                for (i=0;i<choices.length;i++)
-                    if (~choices[i].toLowerCase().indexOf(term)) suggestions.push(choices[i]);
-                suggest(suggestions);
-            }
-        });
-*/function Add()
+	function Add()
 	{
 		var x=document.getElementById('myTable').insertRow(1);
     	var c1=x.insertCell(0);
@@ -89,7 +100,7 @@ var demo1 = new autoComplete({
     	var c3=x.insertCell(2);
     	var c4=x.insertCell(3);
     	c1.innerHTML=document.getElementById('qty').value;   
-    	c2.innerHTML=document.getElementById('hero-demo').value;
+    	c2.innerHTML=document.getElementById('desc').value;
     	c3.innerHTML="£1.24";
 
     	// native JavaScript encoding
